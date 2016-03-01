@@ -1,5 +1,7 @@
 package underground.university.com.lithium;
 
+import android.util.Log;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -37,15 +39,17 @@ public class CalendarParser {
     {
         URL url = new URL(this.url);
         URLConnection connection = url.openConnection();
-        BufferedReader streamReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-        iCalContent = "";
+        /*InputStreamReader response = new InputStreamReader(connection.getInputStream());
+        BufferedReader streamReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));*/
+
+        /*iCalContent = "";
         String line;
 
         while((line = streamReader.readLine()) != null)
             iCalContent += line;
 
-        streamReader.close();
+        streamReader.close();*/
     }
 
     private Calendar ParseDate(String input)

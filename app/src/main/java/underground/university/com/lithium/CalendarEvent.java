@@ -57,4 +57,15 @@ public class CalendarEvent {
     {
 
     }
+
+    public String toString()
+    {
+        String text = "";
+        text += "Start : " + start.toString() + "\n";
+        text += "End : " + end.toString() + "\n";
+        text += "Caption : " + caption.toString() + "\n";
+        text += "Location : " + location.toString() + "\n";
+        text += "Description : " + description.toString();
+        return text;
+    }
 }
