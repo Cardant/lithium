@@ -1,5 +1,6 @@
 package underground.university.com.lithium;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -58,11 +59,14 @@ public class CalendarEvent {
 
     }
 
+    @Override
     public String toString()
     {
         String text = "";
-        text += "Start : " + start.toString() + "\n";
-        text += "End : " + end.toString() + "\n";
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+
+        text += "Start : " + formatter.format(start.getTime()) + "\n";
+        text += "End : " + formatter.format(end.getTime()) + "\n";
         text += "Caption : " + caption.toString() + "\n";
         text += "Location : " + location.toString() + "\n";
         text += "Description : " + description.toString();
