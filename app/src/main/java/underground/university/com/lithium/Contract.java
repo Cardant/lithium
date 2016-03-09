@@ -11,12 +11,12 @@ public final class Contract {
         public static final String COLUMN_LETTER = "letter";
     }
     public abstract class Floor implements BaseColumns {
-        public static final String TABLE_NAME = "building";
+        public static final String TABLE_NAME = "floor";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_NUMBER = "number";
     }
     public abstract class Room implements BaseColumns {
-        public static final String TABLE_NAME = "building";
+        public static final String TABLE_NAME = "room";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_CODE = "code";
     }

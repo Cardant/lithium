@@ -1,5 +1,6 @@
 package underground.university.com.lithium;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -51,4 +52,13 @@ public class DbHelper extends SQLiteOpenHelper{
                     Contract.Room._ID +  " INTEGER PRIMARY KEY," +
                     Contract.Room.COLUMN_ID + TEXT_TYPE + COMMA_SEP +
                     Contract.Room.COLUMN_CODE + TEXT_TYPE + " )";
+
+    public boolean createBuilding(Building building) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Contract.Building.COLUMN_LETTER, String.valueOf(building.getLetter()));
+        boolean created = db.insert(Contract.Building.TABLE_NAME, null, values) > 0;
+        db.close();
+        return created;
+    }
 }
