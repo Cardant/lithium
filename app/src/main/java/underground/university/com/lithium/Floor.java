@@ -1,19 +1,19 @@
 package underground.university.com.lithium;
 
 public class Floor {
-
     int id;
     int number;
+    int building;
+
     public Floor() {
-
     }
-    public Floor(int id, int number) {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
-        this.number = number;
-    }
-
-    public Floor(int number) {
-        this.number = number;
     }
 
     public int getNumber() {
@@ -24,11 +24,11 @@ public class Floor {
         this.number = number;
     }
 
-    public int getId() {
-        return id;
+    public int getBuilding() {
+        return building;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBuilding(int building) {
+        this.building = building;
     }
 }
