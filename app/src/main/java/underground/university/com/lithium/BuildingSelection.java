@@ -1,6 +1,7 @@
 package underground.university.com.lithium;
 
 import android.app.Application;
+import android.content.ContentValues;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Debug;
@@ -12,6 +13,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
@@ -35,14 +38,26 @@ public class BuildingSelection extends AppCompatActivity {
             latch.await();
             parser.Parse();
 
+            ArrayList<ContentValues> values = new ArrayList<ContentValues>();
+
             DbHelper db = new DbHelper(getApplicationContext());
-            db.wipe()
+            db.wipe(Contract.Event.TABLE_NAME);
+
+            //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 
             for(CalendarEvent event : parser.getEvents())
             {
-
+                ContentValues value = new ContentValues();
+                value.put(Contract.Event.COLUMN_CAPTION, event.getCaption());
+                value.put(Contract.Event.COLUMN_DESCRIPTION, event.getDescription());
+                //value.put(Contract.Event.COLUMN_END, formatter.format(event.getEnd().getTime()));
+                value.put(Contract.Event.COLUMN_LOCATION, event.getLocation());
+                //value.put(Contract.Event.COLUMN_START, formatter.format(event.getStart()));
+                values.add(value);
                 Log.i("huehuehue", event.toString());
             }
+
+            db.insert(Contract.Event.TABLE_NAME, values);
         }
         catch(Exception e)
         {

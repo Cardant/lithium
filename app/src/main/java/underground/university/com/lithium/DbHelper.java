@@ -71,7 +71,7 @@ public class DbHelper extends SQLiteOpenHelper{
                     Contract.Event.COLUMN_LOCATION + TEXT_TYPE + COMMA_SEP +
                     Contract.Event.COLUMN_DESCRIPTION + TEXT_TYPE + " )";
 
-    public boolean create(String tableName, ArrayList<ContentValues> values) {
+    public boolean insert(String tableName, ArrayList<ContentValues> values) {
         SQLiteDatabase db = this.getWritableDatabase();
         boolean created = true;
         for (ContentValues value:values) {
@@ -83,6 +83,14 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public boolean wipe(String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
+        boolean deleted = db.delete(tableName, null, null) > 0;
+        db.close();
+        return deleted;
+    }
+
+    public boolean select(String tableName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.query(false, tableName,)
         boolean deleted = db.delete(tableName, null, null) > 0;
         db.close();
         return deleted;
