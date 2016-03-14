@@ -106,8 +106,6 @@ public class CalendarParser extends AsyncTask {
 
         try
         {
-            Log.i("lol", "début");
-
             URL url = new URL(this.url);
             URLConnection connection = url.openConnection();
 
@@ -120,8 +118,6 @@ public class CalendarParser extends AsyncTask {
                 iCalContent += (char)charCode;
 
             streamReader.close();
-
-            Log.i("lol", "fin");
         }
         catch(Exception e)
         {
