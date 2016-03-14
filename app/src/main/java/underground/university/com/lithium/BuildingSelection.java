@@ -1,5 +1,7 @@
 package underground.university.com.lithium;
 
+import android.app.Application;
+import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
@@ -28,15 +30,17 @@ public class BuildingSelection extends AppCompatActivity {
         try
         {
             CountDownLatch latch = new CountDownLatch(1);
-            CalendarParser parser = new CalendarParser(latch, "http://ade6-usmb-ro.grenet.fr/jsp/custom/modules/plannings/direct_cal.jsp?resources=6320,6319,6329,6328,6327,6326,6325,6324,6323,6322&projectId=3&calType=ical&login=iCalExport&password=73rosav&lastDate=2016-03-10");
+            CalendarParser parser = new CalendarParser(latch, "http://ade6-usmb-ro.grenet.fr/jsp/custom/modules/plannings/direct_cal.jsp?resources=6320,6319,6329,6328,6327,6326,6325,6324,6323,6322&projectId=3&calType=ical&login=iCalExport&password=73rosav&lastDate=2016-03-18");
             parser.Download_iCal();
             latch.await();
             parser.Parse();
 
-
+            DbHelper db = new DbHelper(getApplicationContext());
+            db.wipe()
 
             for(CalendarEvent event : parser.getEvents())
             {
+
                 Log.i("huehuehue", event.toString());
             }
         }

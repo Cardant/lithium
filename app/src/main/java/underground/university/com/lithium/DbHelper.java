@@ -58,13 +58,20 @@ public class DbHelper extends SQLiteOpenHelper{
                     Contract.Room.COLUMN_ID + TEXT_TYPE + COMMA_SEP +
                     Contract.Room.COLUMN_CODE + TEXT_TYPE + " )";
 
-    public static boolean create(String tableName, ArrayList<ContentValues> values, SQLiteOpenHelper dbContext) {
-        SQLiteDatabase db = dbContext.getWritableDatabase();
+    public boolean create(String tableName, ArrayList<ContentValues> values) {
+        SQLiteDatabase db = this.getWritableDatabase();
         boolean created = true;
         for (ContentValues value:values) {
             created = created & (db.insert(tableName, null, value) > 0);
         }
         db.close();
         return created;
+    }
+
+    public boolean wipe(String tableName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean deleted = db.delete(tableName, null, null) > 0;
+        db.close();
+        return deleted;
     }
 }
