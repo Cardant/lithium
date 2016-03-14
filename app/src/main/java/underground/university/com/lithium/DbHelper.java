@@ -1,8 +1,14 @@
 package underground.university.com.lithium;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 //http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/
 //Administrateur:500::f656df5fd867591cf0dc9cf4ba44ab68:::
 public class DbHelper extends SQLiteOpenHelper{
@@ -51,4 +57,14 @@ public class DbHelper extends SQLiteOpenHelper{
                     Contract.Room._ID +  " INTEGER PRIMARY KEY," +
                     Contract.Room.COLUMN_ID + TEXT_TYPE + COMMA_SEP +
                     Contract.Room.COLUMN_CODE + TEXT_TYPE + " )";
+
+    public static boolean create(String tableName, ArrayList<ContentValues> values, SQLiteOpenHelper dbContext) {
+        SQLiteDatabase db = dbContext.getWritableDatabase();
+        boolean created = true;
+        for (ContentValues value:values) {
+            created = created & (db.insert(tableName, null, value) > 0);
+        }
+        db.close();
+        return created;
+    }
 }
