@@ -3,17 +3,9 @@ package underground.university.com.lithium;
 public class Room {
     int id;
     String code;
+    int floor;
 
     public Room() {
-    }
-
-    public Room(String code) {
-        this.code = code;
-    }
-
-    public Room(String code, int id) {
-        this.code = code;
-        this.id = id;
     }
 
     public int getId() {
@@ -30,5 +22,13 @@ public class Room {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 }

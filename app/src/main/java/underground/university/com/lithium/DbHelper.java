@@ -25,6 +25,7 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_TABLE_BUILDING);
         db.execSQL(CREATE_TABLE_FLOOR);
         db.execSQL(CREATE_TABLE_ROOM);
+        db.execSQL(CREATE_TABLE_EVENT);
     }
 
     @Override
@@ -32,6 +33,7 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + Contract.Building.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Contract.Floor.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Contract.Room.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Contract.Event.TABLE_NAME);
         onCreate(db);
     }
 
@@ -50,13 +52,24 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final String CREATE_TABLE_FLOOR =
             "CREATE TABLE " + Contract.Floor.TABLE_NAME + " (" +
                     Contract.Floor._ID + " INTEGER PRIMARY KEY," +
-                    Contract.Floor.COLUMN_ID + TEXT_TYPE + COMMA_SEP +
-                    Contract.Floor.COLUMN_NUMBER + INTEGER_TYPE + " )";
+                    Contract.Floor.COLUMN_ID + INTEGER_TYPE + COMMA_SEP +
+                    Contract.Floor.COLUMN_NUMBER + INTEGER_TYPE + COMMA_SEP +
+                    Contract.Floor.COLUMN_BUILDING + INTEGER_TYPE + " )";
     private static final String CREATE_TABLE_ROOM =
             "CREATE TABLE " + Contract.Room.TABLE_NAME + " (" +
                     Contract.Room._ID +  " INTEGER PRIMARY KEY," +
-                    Contract.Room.COLUMN_ID + TEXT_TYPE + COMMA_SEP +
-                    Contract.Room.COLUMN_CODE + TEXT_TYPE + " )";
+                    Contract.Room.COLUMN_ID + INTEGER_TYPE + COMMA_SEP +
+                    Contract.Room.COLUMN_CODE + TEXT_TYPE + COMMA_SEP +
+                    Contract.Room.COLUMN_FLOOR + INTEGER_TYPE + " )";
+    private static final String CREATE_TABLE_EVENT =
+            "CREATE TABLE " + Contract.Event.TABLE_NAME + " (" +
+                    Contract.Event._ID +  " INTEGER PRIMARY KEY," +
+                    Contract.Event.COLUMN_ID + INTEGER_TYPE + COMMA_SEP +
+                    Contract.Event.COLUMN_START + TEXT_TYPE + COMMA_SEP +
+                    Contract.Event.COLUMN_END + TEXT_TYPE + COMMA_SEP +
+                    Contract.Event.COLUMN_CAPTION + TEXT_TYPE + COMMA_SEP +
+                    Contract.Event.COLUMN_LOCATION + TEXT_TYPE + COMMA_SEP +
+                    Contract.Event.COLUMN_DESCRIPTION + TEXT_TYPE + " )";
 
     public boolean create(String tableName, ArrayList<ContentValues> values) {
         SQLiteDatabase db = this.getWritableDatabase();
