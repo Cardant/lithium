@@ -35,7 +35,7 @@ public class BuildingSelection extends AppCompatActivity {
         try
         {
             CountDownLatch latch = new CountDownLatch(1);
-            CalendarParser parser = new CalendarParser(latch, "http://ade6-usmb-ro.grenet.fr/jsp/custom/modules/plannings/direct_cal.jsp?resources=6320,6319,6329,6328,6327,6326,6325,6324,6323,6322&projectId=3&calType=ical&login=iCalExport&password=73rosav&lastDate=2016-03-18");
+            CalendarParser parser = new CalendarParser(latch, "http://ade6-usmb-ro.grenet.fr/jsp/custom/modules/plannings/direct_cal.jsp?resources=6320,6319,6329,6328,6327,6326,6325,6324,6323,6322&projectId=3&calType=ical&login=iCalExport&password=73rosav&lastDate=2016-03-24");
             parser.Download_iCal();
             latch.await();
             parser.Parse();
@@ -65,12 +65,12 @@ public class BuildingSelection extends AppCompatActivity {
 
             for(HashMap<String, String> row : rows)
             {
-                
+                Log.i("huehuehue2", row.get("description"));
             }
         }
         catch(Exception e)
         {
-            Log.i("huehuehue", e.getMessage());
+            Log.i("huehuehue3", e.getMessage());
         }
     }
 
