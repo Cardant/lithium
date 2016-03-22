@@ -21,7 +21,6 @@ public final class Contract {
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_CODE = "code";
         public static final String COLUMN_FLOOR = "floor";
-
     }
     public abstract class Event implements BaseColumns {
         public static final String TABLE_NAME = "event";

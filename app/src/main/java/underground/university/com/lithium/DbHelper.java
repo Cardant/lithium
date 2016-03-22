@@ -90,7 +90,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public boolean select(String tableName) {
         SQLiteDatabase db = this.getReadableDatabase();
-        db.query(false, tableName,)
+        //db.query(false, tableName,)
         boolean deleted = db.delete(tableName, null, null) > 0;
         db.close();
         return deleted;
