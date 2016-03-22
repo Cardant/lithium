@@ -2,6 +2,7 @@ package underground.university.com.lithium;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -88,11 +89,32 @@ public class DbHelper extends SQLiteOpenHelper{
         return deleted;
     }
 
-    public boolean select(String tableName) {
+    public ArrayList<HashMap<String, String>> select(String tableName, String filters) {
+
+        ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
+
         SQLiteDatabase db = this.getReadableDatabase();
-        //db.query(false, tableName,)
-        boolean deleted = db.delete(tableName, null, null) > 0;
+        Cursor cursor = db.rawQuery("select * from " + tableName + (filters != null ? " " + filters : ""), null);
+
+        if (cursor .moveToFirst()) {
+            String[] columns = cursor.getColumnNames();
+
+            while (cursor.isAfterLast() == false) {
+
+                HashMap<String, String> row = new HashMap<String, String>();
+
+                for(String column : columns)
+                {
+                    row.put(column, cursor.getString(cursor.getColumnIndex(column)));
+                }
+
+                result.add(row);
+
+                cursor.moveToNext();
+            }
+        }
+
         db.close();
-        return deleted;
+        return result;
     }
 }
