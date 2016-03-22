@@ -15,6 +15,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
@@ -58,6 +60,13 @@ public class BuildingSelection extends AppCompatActivity {
             }
 
             db.insert(Contract.Event.TABLE_NAME, values);
+
+            List<HashMap<String, String>> rows = db.select(Contract.Event.TABLE_NAME, null);
+
+            for(HashMap<String, String> row : rows)
+            {
+                
+            }
         }
         catch(Exception e)
         {
