@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //http://www.androidhive.info/2013/09/android-sqlite-database-with-multiple-tables/
-//Administrateur:500::f656df5fd867591cf0dc9cf4ba44ab68:::
+
 public class DbHelper extends SQLiteOpenHelper{
 
     public static final int DATABASE_VERSION = 1;
