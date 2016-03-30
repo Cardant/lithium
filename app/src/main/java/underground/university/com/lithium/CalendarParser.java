@@ -32,8 +32,6 @@ public class CalendarParser extends AsyncTask {
 
     private List<CalendarEvent> events = new ArrayList<CalendarEvent>();
 
-    private CountDownLatch latch;
-
     public CalendarParser(CountDownLatch latch, String url)
     {
         this.url = url;
@@ -44,6 +42,8 @@ public class CalendarParser extends AsyncTask {
     {
         execute();
     }
+
+    private CountDownLatch latch;
 
     private Calendar ParseDate(String input)
     {

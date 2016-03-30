@@ -3,8 +3,16 @@
 
         <group android:checkableBehavior="single">
             <item
-                android:id="@+id/nav_etage"
+                android:id="@+id/nav_etage1"
                 android:icon="@drawable/ic_home_black"
-                android:title="Etage X" />
+                android:title="Etage 1" />
+            <item
+                android:id="@+id/nav_etage2"
+                android:icon="@drawable/ic_home_black"
+                android:title="Etage 2" />
+            <item
+                android:id="@+id/nav_etage3"
+                android:icon="@drawable/ic_home_black"
+                android:title="Etage 3" />
         </group>
 </menu>

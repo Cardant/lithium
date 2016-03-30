@@ -3,6 +3,7 @@ package underground.university.com.lithium;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.Layout;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.HashMap;
 
 public class Maps extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DbHelper db;
+    private TextView textDebug;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +32,7 @@ public class Maps extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        db = new DbHelper(getApplicationContext());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -52,6 +54,8 @@ public class Maps extends AppCompatActivity
         {
 
         }
+
+        textDebug = (TextView)findViewById(R.id.parserContent);
     }
 
     @Override
@@ -66,8 +70,10 @@ public class Maps extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.maps, menu);
+        //getMenuInflater().inflate(R.menu.maps, menu);
         return true;
     }
 
@@ -92,19 +98,41 @@ public class Maps extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        /*if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        textDebug.setText("");
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        if(id == R.id.nav_etage1)
+        {
+            for(HashMap<String, String> row : db.select(Contract.Event.TABLE_NAME, Contract.Event.COLUMN_LOCATION + " like 'D1%'"))
+            {
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_START) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_END) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
+            }
+        }
+        else if(id == R.id.nav_etage2)
+        {
+            for(HashMap<String, String> row : db.select(Contract.Event.TABLE_NAME, Contract.Event.COLUMN_LOCATION + " like 'D2%'"))
+            {
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_START) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_END) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
+            }
+        }
+        else if(id == R.id.nav_etage3)
+        {
+            for(HashMap<String, String> row : db.select(Contract.Event.TABLE_NAME, Contract.Event.COLUMN_LOCATION + " like 'D3%'"))
+            {
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_START) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_END) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
+                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
+            }
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         try {
