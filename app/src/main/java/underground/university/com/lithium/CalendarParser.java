@@ -109,6 +109,7 @@ public class CalendarParser extends AsyncTask {
         {
             URL url = new URL(this.url);
             URLConnection connection = url.openConnection();
+            connection.setConnectTimeout(10000);
 
             BufferedReader streamReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 

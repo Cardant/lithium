@@ -104,33 +104,33 @@ public class Maps extends AppCompatActivity
         {
             for(HashMap<String, String> row : db.select(Contract.Event.TABLE_NAME, Contract.Event.COLUMN_LOCATION + " like 'D1%'"))
             {
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_START) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_END) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
+                textDebug.setText(textDebug.getText() + "Début : " + row.get(Contract.Event.COLUMN_START) + "\n");
+                textDebug.setText(textDebug.getText() + "Fin : " + row.get(Contract.Event.COLUMN_END) + "\n");
+                textDebug.setText(textDebug.getText() + "Salle : " + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
+                textDebug.setText(textDebug.getText() + "Evènement : " + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
+                textDebug.setText(textDebug.getText() + "Description : " + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
             }
         }
         else if(id == R.id.nav_etage2)
         {
             for(HashMap<String, String> row : db.select(Contract.Event.TABLE_NAME, Contract.Event.COLUMN_LOCATION + " like 'D2%'"))
             {
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_START) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_END) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
+                textDebug.setText(textDebug.getText() + "Début : " + row.get(Contract.Event.COLUMN_START) + "\n");
+                textDebug.setText(textDebug.getText() + "Fin : " + row.get(Contract.Event.COLUMN_END) + "\n");
+                textDebug.setText(textDebug.getText() + "Salle : " + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
+                textDebug.setText(textDebug.getText() + "Evènement : " + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
+                textDebug.setText(textDebug.getText() + "Description : " + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
             }
         }
         else if(id == R.id.nav_etage3)
         {
             for(HashMap<String, String> row : db.select(Contract.Event.TABLE_NAME, Contract.Event.COLUMN_LOCATION + " like 'D3%'"))
             {
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_START) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_END) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
-                textDebug.setText(textDebug.getText() + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
+                textDebug.setText(textDebug.getText() + "Début : " + row.get(Contract.Event.COLUMN_START) + "\n");
+                textDebug.setText(textDebug.getText() + "Fin : " + row.get(Contract.Event.COLUMN_END) + "\n");
+                textDebug.setText(textDebug.getText() + "Salle : " + row.get(Contract.Event.COLUMN_LOCATION) + "\n");
+                textDebug.setText(textDebug.getText() + "Evènement : " + row.get(Contract.Event.COLUMN_CAPTION) + "\n");
+                textDebug.setText(textDebug.getText() + "Description : " + row.get(Contract.Event.COLUMN_DESCRIPTION) + "\n\n");
             }
         }
 

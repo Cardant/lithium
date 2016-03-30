@@ -29,6 +29,7 @@ public class BuildingSelection extends AppCompatActivity {
 
     private Button btnBatD;
     public static CalendarParser parser;
+    public static boolean first = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,50 +50,57 @@ public class BuildingSelection extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
-        try
+        if(first)
         {
-            // Url date formatter
-            SimpleDateFormat urlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-
-            CountDownLatch latch = new CountDownLatch(1);
-            // New calendar parser
-            parser = new CalendarParser(latch, "http://ade6-usmb-ro.grenet.fr/jsp/custom/modules/plannings/direct_cal.jsp?resources=6320,6319,6329,6328,6327,6326,6325,6324,6323,6322&projectId=3&calType=ical&login=iCalExport&password=73rosav&lastDate=" + urlDateFormatter.format(Calendar.getInstance().getTime()));
-            // Download iCal file
-            parser.Download_iCal();
-            latch.await();
-            // Extract events from downloaded file
-            parser.Parse();
-
-            // Values to put in database
-            ArrayList<ContentValues> values = new ArrayList<ContentValues>();
-
-            // Instanciate database object
-            DbHelper db = new DbHelper(getApplicationContext());
-            // Wipe the database and put newest events
-            db.wipe(Contract.Event.TABLE_NAME);
-
-            // Event date formatter
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            // Prepare list of values
-            for(CalendarEvent event : parser.getEvents())
+            first = false;
+            try
             {
-                ContentValues value = new ContentValues();
-                value.put(Contract.Event.COLUMN_CAPTION, event.getCaption());
-                value.put(Contract.Event.COLUMN_DESCRIPTION, event.getDescription());
-                value.put(Contract.Event.COLUMN_END, formatter.format(event.getEnd().getTime()));
-                value.put(Contract.Event.COLUMN_LOCATION, event.getLocation());
-                value.put(Contract.Event.COLUMN_START, formatter.format(event.getStart().getTime()));
-                values.add(value);
-                Log.i("huehuehue", event.toString());
-            }
+                // Url date formatter
+                SimpleDateFormat urlDateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
-            // Put values in the database
-            db.insert(Contract.Event.TABLE_NAME, values);
-        }
-        catch(Exception e)
-        {
-            Log.i("huehuehue3", e.getMessage());
+                CountDownLatch latch = new CountDownLatch(1);
+                // New calendar parser
+                parser = new CalendarParser(latch, "http://ade6-usmb-ro.grenet.fr/jsp/custom/modules/plannings/direct_cal.jsp?resources=6320,6319,6329,6328,6327,6326,6325,6324,6323,6322&projectId=3&calType=ical&login=iCalExport&password=73rosav&lastDate=" + urlDateFormatter.format(Calendar.getInstance().getTime()));
+                // Download iCal file
+                parser.Download_iCal();
+                latch.await();
+                // Extract events from downloaded file
+                parser.Parse();
+
+                if(parser.getEvents().size() > 0)
+                {
+                    // Values to put in database
+                    ArrayList<ContentValues> values = new ArrayList<ContentValues>();
+
+                    // Instanciate database object
+                    DbHelper db = new DbHelper(getApplicationContext());
+                    // Wipe the database and put newest events
+                    db.wipe(Contract.Event.TABLE_NAME);
+
+                    // Event date formatter
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                    // Prepare list of values
+                    for(CalendarEvent event : parser.getEvents())
+                    {
+                        ContentValues value = new ContentValues();
+                        value.put(Contract.Event.COLUMN_CAPTION, event.getCaption());
+                        value.put(Contract.Event.COLUMN_DESCRIPTION, event.getDescription());
+                        value.put(Contract.Event.COLUMN_END, formatter.format(event.getEnd().getTime()));
+                        value.put(Contract.Event.COLUMN_LOCATION, event.getLocation());
+                        value.put(Contract.Event.COLUMN_START, formatter.format(event.getStart().getTime()));
+                        values.add(value);
+                        Log.i("huehuehue", event.toString());
+                    }
+
+                    // Put values in the database
+                    db.insert(Contract.Event.TABLE_NAME, values);
+                }
+            }
+            catch(Exception e)
+            {
+                Log.i("huehuehue3", e.getMessage());
+            }
         }
     }
 
