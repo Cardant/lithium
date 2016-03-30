@@ -94,7 +94,7 @@ public class DbHelper extends SQLiteOpenHelper{
         ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from " + tableName + (filters != null ? " " + filters : ""), null);
+        Cursor cursor = db.rawQuery("select * from " + tableName + (filters != null ? " where " + filters : ""), null);
 
         if (cursor .moveToFirst()) {
             String[] columns = cursor.getColumnNames();
