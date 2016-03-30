@@ -35,11 +35,23 @@ public class Maps extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        try {
+            drawer.setDrawerListener(toggle);
+        }
+        catch (Exception e)
+        {
+
+        }
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        try {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     @Override
@@ -67,9 +79,9 @@ public class Maps extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -80,7 +92,7 @@ public class Maps extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        /*if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
@@ -88,14 +100,20 @@ public class Maps extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-        } /*else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
         }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        try {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        catch (Exception e)
+        {
+
+        }
         return true;
     }
 }
