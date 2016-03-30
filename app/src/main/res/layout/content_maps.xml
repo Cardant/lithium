@@ -12,4 +12,11 @@
     tools:context="underground.university.com.lithium.Maps"
     tools:showIn="@layout/app_bar_maps">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivEtage"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp" />
 </RelativeLayout>
